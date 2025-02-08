@@ -1,22 +1,17 @@
 import express from "express";
 import cors from "cors";
-import cookieParser from "cookie-parser";
-import userRouter from "../Chat_Backend/src/routes/user.routes.js";
+import userRoutes from "./routes/user.routes.js"; // Router Import
 
-const app = express();
+export const app = express();
 
-app.use(
-  cors({
-    origin: "http://localhost:5173",
-    credentials: true,
-  })
-);
-app.use(express.json({ limit: "16kb" }));
-app.use(express.urlencoded({ extended: true, limit: "16kb" }));
-app.use(express.static("public"));
-app.use(cookieParser());
+app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-//routes declaration
-app.use("/api/v1/users", userRouter);
+// Routes
+app.use("/api/users", userRoutes);
 
-export { app };
+// Root Route
+app.get("/", (req, res) => {
+  res.send("Welcome to WebRTC Backend!");
+});
