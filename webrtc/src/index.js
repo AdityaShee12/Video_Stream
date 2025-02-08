@@ -5,7 +5,7 @@ import { Server as socketio } from "socket.io";
 const server = http.createServer(app);
 const io = new socketio(server, {
   cors: {
-    origin: ["http://localhost:5173","https://videostreaming-eight.vercel.app"], // Frontend Vite server URL
+    origin: "https://videostreaming-eight.vercel.app",
     methods: ["GET", "POST"],
     credentials: true,
   },
